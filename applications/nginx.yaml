@@ -9,7 +9,7 @@ spec:
   project: default
   
   source:
-    repoURL: https://github.com/your-org/k8s-apps
+    repoURL: https://github.com/rtrentinavx/k8sgitops
     targetRevision: main
     path: nginx/overlays/dev
     
