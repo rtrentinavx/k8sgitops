@@ -1,0 +1,25 @@
+# ServiceAccount and ClusterRoleBinding for Kubernetes Dashboard (prod)
+# NOTE: cluster-admin grants broad privileges. Consider narrowing for production.
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kubernetes-dashboard-sa
+  namespace: kubernetes-dashboard-prod
+  labels:
+    app: kubernetes-dashboard
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard-sa-cluster-admin
+  labels:
+    app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: kubernetes-dashboard-sa
+    namespace: kubernetes-dashboard-prod
