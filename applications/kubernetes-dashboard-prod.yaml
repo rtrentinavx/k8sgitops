@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubernetes-dashboard-prod
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  
+  source:
+    repoURL: https://kubernetes.github.io/dashboard
+    chart: kubernetes-dashboard
+    targetRevision: 6.0.8
+    helm:
+      releaseName: kubernetes-dashboard
+      values: |
+        service:
+          type: LoadBalancer
+          externalPort: 443
+        ingress:
+          enabled: false
+        rbac:
+          clusterAdminRole: true
+    
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kubernetes-dashboard-prod
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+    
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
