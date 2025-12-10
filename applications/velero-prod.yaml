@@ -17,10 +17,11 @@ spec:
       values: |
         configuration:
           backupStorageLocation:
-            provider: gcp
-            bucket:  rtrentin-01-us-east1-velero-backups 
-            config:
-              project: rtrentin-01
+            - name: default
+              provider: gcp
+              bucket: rtrentin-01-us-east1-velero-backups
+              config:
+                project: rtrentin-01
           schedules:
             daily-backup:
               schedule: "0 2 * * *"
