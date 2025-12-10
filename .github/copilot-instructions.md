@@ -28,9 +28,3 @@ This file gives concise, project-specific guidance for AI coding agents working 
 **Integration points & infra notes**
 - ArgoCD: `applications/nginx.yaml` is the source of truth for automatic sync. `syncPolicy` sets `CreateNamespace=true`, `ApplyOutOfSyncOnly=true`, and auto-prune/self-heal.
 - Cloud LB hint: `service.yaml` attempts to set a GCP LB annotation `cloud.google.com/load-balancer-type: "Network"` (note: file uses singular `annotation`, see "Gotchas").
-
-**Gotchas & detectable issues**
-- `nginx/base/service.yaml` uses `annotation:` (singular) instead of the Kubernetes canonical `annotations:` key. Be careful when updating — this looks like a typo and will be ignored by the API.
-- Health vs probes: the Deployment exposes a `/health` path that returns 200, but liveness/readiness probes target `/` (root). If adding health checks or tests, check which path you mean to probe.
-
-If anything here is unclear or you want more examples (e.g., CI steps, image build instructions, or an overlay for `staging/prod`), tell me which area to expand and I'll iterate.
