@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/rtrentinavx/k8sgitops
     targetRevision: main
-    path: rbac
+    path: rbac-view-nodes
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
