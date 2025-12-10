@@ -9,9 +9,9 @@ spec:
   project: default
   
   source:
-    repoURL: https://github.com/sighupio/gatekeeper-policy-manager/chart
-    chart: gatekeeper-policy-manager
-    targetRevision: 0.14.0
+    repoURL: https://github.com/sighupio/gatekeeper-policy-manager/
+    path: manifests
+    targetRevision: main   
     helm:
       releaseName: gatekeeper-policy-manager
       values: |
