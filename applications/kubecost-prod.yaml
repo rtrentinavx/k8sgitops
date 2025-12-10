@@ -1,8 +1,7 @@
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubecost-dev
+  name: kubecost-prod
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -12,12 +11,12 @@ spec:
   source:
     repoURL: https://github.com/rtrentinavx/k8sgitops
     targetRevision: main
-    path: kubecost/overlays/dev
+    path: kubecost/overlays/prod
     helm:
       releaseName: kubecost
       values: |
         global:
-          clusterId: dev-gke
+          clusterId: prod-gke
           prometheus:
             enabled: true
         service:
@@ -30,7 +29,7 @@ spec:
     
   destination:
     server: https://kubernetes.default.svc
-    namespace: kubecost-dev
+    namespace: kubecost-prod
   
   syncPolicy:
     automated:
