@@ -1,0 +1,34 @@
+
+# applications/kubecost/kubecost-project.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kubecost
+  namespace: argocd
+spec:
+  description: Kubecost deployments
+  sourceRepos:
+    - 'https://kubecost.github.io/cost-analyzer'
+    - 'https://github.com/rtrentinavx/k8sgitops'
+  destinations:
+    - name: in-cluster
+      namespace: kubecost
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: 'apps'
+      kind: Deployment
+    - group: ''
+      kind: Service
+    - group: ''
+      kind: ConfigMap
+    - group: 'networking.k8s.io'
+      kind: Ingress
+  roles:
+    - name: kubecost-admins
+      description: Admins for Kubecost apps
+      policies:
+        - p, proj:kubecost:kubecost-admins, applications, *, kubecost/*, allow
+      groups:
+        - your-entra-group-kubecost-admins
