@@ -9,3 +9,17 @@ resources:
 commonLabels:
   environment: prod
 
+# Patch service to expose via LoadBalancer
+patches:
+  - target:
+      kind: Service
+      name: gatekeeper-policy-manager
+    patch: |-
+      - op: replace
+        path: /spec/type
+        value: LoadBalancer
+      - op: add
+        path: /metadata/annotations
+        value:
+          cloud.google.com/load-balancer-type: "Network"
+

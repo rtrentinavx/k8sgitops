@@ -7,3 +7,7 @@ commonLabels:
   app: gatekeeper-policy-manager
   managed-by: argocd
 
+# Reference upstream gatekeeper-policy-manager manifests
+resources:
+  - https://github.com/gatekeeper-policy-manager/gatekeeper-policy-manager/deploy/kustomize?ref=main
+

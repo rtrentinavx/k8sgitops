@@ -9,19 +9,9 @@ spec:
   project: default
   
   source:
-    repoURL: https://open-policy-agent.github.io/gatekeeper/charts
-    chart: gatekeeper-policy-manager
-    targetRevision: 0.3.0
-    helm:
-      releaseName: gatekeeper-policy-manager
-      values: |
-        service:
-          type: LoadBalancer
-          port: 8888
-          annotations:
-            cloud.google.com/load-balancer-type: "Network"
-        ingress:
-          enabled: false
+    repoURL: https://github.com/rtrentinavx/k8sgitops
+    targetRevision: main
+    path: gatekeeper-policy-manager/overlays/prod
     
   destination:
     server: https://kubernetes.default.svc
