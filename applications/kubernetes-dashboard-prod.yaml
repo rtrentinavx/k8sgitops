@@ -22,6 +22,10 @@ spec:
           enabled: false
         rbac:
           clusterAdminRole: true
+        podLabels:
+          app: kubernetes-dashboard
+        commonLabels:
+          app: kubernetes-dashboard
     
   destination:
     server: https://kubernetes.default.svc

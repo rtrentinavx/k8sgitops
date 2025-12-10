@@ -9,3 +9,18 @@ resources:
 commonLabels:
   environment: prod
 
+# Patch to add required 'app' label for Gatekeeper policy
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/labels/app
+        value: kubernetes-dashboard
+  - target:
+      kind: Pod
+    patch: |-
+      - op: add
+        path: /metadata/labels/app
+        value: kubernetes-dashboard
+
