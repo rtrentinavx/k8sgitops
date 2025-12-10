@@ -18,6 +18,8 @@ spec:
         service:
           type: LoadBalancer
           port: 8888
+          annotations:
+            cloud.google.com/load-balancer-type: "Network"
         ingress:
           enabled: false
     
