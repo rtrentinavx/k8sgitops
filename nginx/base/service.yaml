@@ -4,6 +4,8 @@ metadata:
   name: nginx
   labels:
     app: nginx
+annotation:
+  cloud.google.com/load-balancer-type: "Network"
 spec:
   selector:
     app: nginx
