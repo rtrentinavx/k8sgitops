@@ -7,3 +7,6 @@ commonLabels:
   app: velero
   managed-by: argocd
 
+resources:
+  - rbac.yaml
+
