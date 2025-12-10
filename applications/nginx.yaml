@@ -15,7 +15,7 @@ spec:
     
   destination:
     server: https://kubernetes.default.svc
-    namespace: nginx-prod
+    namespace: nginx-dev
   
   syncPolicy:
     automated:
