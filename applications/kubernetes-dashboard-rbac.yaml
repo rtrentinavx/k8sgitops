@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/rtrentinavx/k8sgitops
     targetRevision: main
-    path: rbac
+    path: rbac-kubernetes-dashboard
   destination:
     server: https://kubernetes.default.svc
     namespace: kubernetes-dashboard-prod
