@@ -12,14 +12,5 @@ replicas:
   - name: nginx
     count: 1
 
-patches:
-  - patch: |-
-      - op: replace
-        path: /spec/type
-        value: ClusterIP
-    target:
-      kind: Service
-      name: nginx
-
 commonLabels:
   environment: dev
