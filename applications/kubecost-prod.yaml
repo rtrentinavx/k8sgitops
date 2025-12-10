@@ -9,9 +9,9 @@ spec:
   project: default
   
   source:
-    repoURL: https://github.com/rtrentinavx/k8sgitops
-    targetRevision: main
-    path: kubecost/overlays/prod
+    repoURL: https://kubecost.github.io/cost-analyzer
+    chart: cost-analyzer
+    targetRevision: 2.8.0
     helm:
       releaseName: kubecost
       values: |
