@@ -9,9 +9,9 @@ spec:
   project: default
   
   source:
-    repoURL: https://benc55.github.io/kubeview
+    repoURL: https://code.benco.io/kubeview/deploy/helm
     chart: kubeview
-    targetRevision: 0.2.0
+    targetRevision: 2.0.6
     helm:
       releaseName: kubeview
       values: |
