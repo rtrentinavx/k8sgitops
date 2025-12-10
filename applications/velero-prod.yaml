@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: velero-prod
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  
+  source:
+    repoURL: https://vmware-tanzu.github.io/helm-charts
+    chart: velero
+    targetRevision: 5.0.2
+    helm:
+      releaseName: velero
+      values: |
+        configuration:
+          backupStorageLocation:
+            provider: gcp
+            bucket:  rtrentin-01-us-east1-velero-backups 
+            config:
+              project: rtrentin-01
+          schedules:
+            daily-backup:
+              schedule: "0 2 * * *"
+              template:
+                ttl: "720h"
+        metrics:
+          enabled: true
+        podLabels:
+          app: velero
+    
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: velero-prod
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+    
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
