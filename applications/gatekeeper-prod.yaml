@@ -18,6 +18,23 @@ spec:
         enableExternalData: false
         enableGeneratorResourceExpansion: false
         replicas: 3
+        webhook:
+          namespaceSelector:
+            matchExpressions:
+              - key: control-plane
+                operator: DoesNotExist
+              - key: admission.gatekeeper.sh/ignore
+                operator: DoesNotExist
+          excludedOperations:
+            - "*"
+          excludedNamespaces:
+            - kube-system
+            - kube-public
+            - kube-node-lease
+            - gatekeeper-system
+            - argocd
+            - vertical-pod-autoscaler
+            - velero-prod
     
   destination:
     server: https://kubernetes.default.svc
