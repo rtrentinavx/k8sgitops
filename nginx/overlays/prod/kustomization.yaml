@@ -17,4 +17,5 @@ commonLabels:
 
 resources:
   - hpa.yaml
+  - vpa.yaml
 
