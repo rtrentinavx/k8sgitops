@@ -9,18 +9,9 @@ spec:
   project: default
   
   source:
-    repoURL: https://cowboysysop.github.io/charts
-    chart: vertical-pod-autoscaler
-    targetRevision: 9.3.0
-    helm:
-      releaseName: vertical-pod-autoscaler
-      values: |
-        recommender:
-          enabled: true
-        updater:
-          enabled: false
-        admissionController:
-          enabled: false
+    repoURL: https://github.com/kubernetes/autoscaler
+    targetRevision: vertical-pod-autoscaler-1.1.2
+    path: vertical-pod-autoscaler/deploy
     
   destination:
     server: https://kubernetes.default.svc
