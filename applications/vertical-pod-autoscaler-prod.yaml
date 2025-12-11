@@ -10,7 +10,7 @@ spec:
   
   source:
     repoURL: https://github.com/kubernetes/autoscaler
-    targetRevision: vertical-pod-autoscaler-1.1.2
+    targetRevision: vpa-release-1.1
     path: vertical-pod-autoscaler/deploy
     
   destination:
