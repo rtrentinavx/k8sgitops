@@ -20,8 +20,8 @@ spec:
         deployment:
           replicas: 2
         service:
-          enabled: true
           type: LoadBalancer
+          annotations: {}
           spec:
             externalTrafficPolicy: Cluster
         ingressRoute:
